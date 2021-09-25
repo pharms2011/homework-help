@@ -1,58 +1,65 @@
-public class HouseSign
-{
-    public static void main(String args[])
-    {
-        // This is the work done in the housekeeping() method
-        // Declare and initialize variables here.
-        // Charge for this sign.
-//        var basePrice = 35.00;
-        double basePrice = 35.00;
-        // Number of characters.
-//        var numLetters = 8;
-        int numLetters = 8;
-        // Color of characters.
-//        var Color = "Gold";
-        String color = "Gold";
-        // Type of wood.
-//        var woodType = "Oak";
-        String woodType = "Oak";
-        // This is the work done in the detailLoop() method
-        // Write assignment and if statements here as appropriate.
+public class HouseSign {
 
-        if (numLetters < 5)
-            System.out.println("No Charge");
-        else if (numLetters > 5)
-            System.out.println(3 * numLetters);
-        // = in Java is used to set values, == is used to compare
-        if (color == "Gold")
-            System.out.println("Add $15");
-//        else if (Color = "Black" or "White");
-        else if (color.equals("Black") || color.equals("White"));
-        System.out.println("No Charge");
-        if (woodType.equals("Pine"));
-        System.out.println("No Charge");
-      else if (woodType.equals("Oak"))
-        System.out.println(" Add $20");
+    double basePrice = 35.00;
 
+    int numLetters = 8;
 
-        // This is the work done in the detailLoop() method
+    String color = "Gold";
 
+    String woodType = "Oak";
 
+    HouseSign(){
+        System.out.println("Base charge, add $" + (int)basePrice);
+    }
 
-        // This is the work done in the endOfJob() method
-        // Output Charge for this sign.
+    public double endOfJob(){
+        return basePrice + letterCost() + woodCost() + charCos();
+    }
 
+    public double letterCost(){
+        double letterCost = 0;
+        if (color == "Gold"){
+            System.out.println(color + ", Add $15");
+            letterCost += 15;
+        }
+        else if (color.equals("Black") || color.equals("White"))
+            System.out.println("No Charge for Black or White");
+        return letterCost;
+    }
 
+    public double woodCost(){
+        double charCost = 0;
+        if (woodType.equals("Pine"))
+            System.out.println("No Charge for Pine");
+        else if (woodType.equals("Oak")){
+            System.out.println("Oak, Add $20");
+            charCost = 20;
+        }
+        return charCost;
+    }
 
-        totalCost = basePrice +letterCost+woodCost+charCos;
+    public double charCos(){
+        double charCost = 0;
+        if (numLetters < 5){
+            System.out.println("No Charge for characters");
+        }
+        else if (numLetters > 5){
+            System.out.println(numLetters + " letters cost $" + 4 * numLetters);
+            charCost = 4 * (numLetters-5);
+        }
+        return charCost;
+    }
 
+    public static void main(String args[]) {
+        // Create a house sign with default values
+        HouseSign houseSign = new HouseSign();
 
+        // Calculate the cost of the sign with default values
+        double charge = houseSign.endOfJob();
 
-
-        // This is the work done in the endOfJob() method
-        // Output Charge for this sign.
         System.out.println("The charge for this sign is $" + charge);
 
         System.exit(0);
     }
 }
+
